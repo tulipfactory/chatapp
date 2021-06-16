@@ -15,6 +15,9 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
+import { ChatroomComponent } from './chatroom/chatroom.component';
+import { FeedComponent } from './feed/feed.component';
+import { UserItemComponent } from './user-item/user-item.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +26,10 @@ import { environment } from '../environments/environment';
     ChatFormComponent,
     MessageComponent,
     LoginFormComponent,
-    SignupFormComponent
+    SignupFormComponent,
+    ChatroomComponent,
+    FeedComponent,
+    UserItemComponent
   ],
   imports: [
     BrowserModule,
@@ -42,11 +48,11 @@ import { environment } from '../environments/environment';
         component: ChatFormComponent
       },
       {
-        path: "loginform",
+        path: "login",
         component: LoginFormComponent
       },
       {
-       path: "signupform",
+       path: "signup",
        component: SignupFormComponent
       },
     
@@ -57,7 +63,9 @@ import { environment } from '../environments/environment';
   {
     path: "message",
     component: MessageComponent
-  }]
+  },
+   { path: "chatroom",
+    component: ChatroomComponent }]
     )
   ],
   providers: [AuthService, ChatService],
