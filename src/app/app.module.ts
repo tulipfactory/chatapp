@@ -28,14 +28,16 @@ import { environment } from '../environments/environment';
   imports: [
     BrowserModule,
     FormsModule,
-    ChatService,
-    AuthService,
     AngularFireAuthModule,
     AngularFireStorageModule,
     AngularFirestoreModule, 
     AngularFireModule.initializeApp(environment.firebase),
     RouterModule.forRoot(
-      [ {
+      
+      [ 
+        { path: '', redirectTo: '/loginform', pathMatch: 'full' },
+        
+        {
         path: "chatform",
         component: ChatFormComponent
       },
