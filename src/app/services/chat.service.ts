@@ -5,17 +5,15 @@ import { Observable } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 import * as firebase from 'firebase/app';
 import { ChatMessage } from '../models/chat-message.model';
-import { timeStamp } from 'console';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ChatService {
   user: any;
-  chatMessages: AngularFireList<ChatMessage[]>;
+  chatMessages: AngularFireList<ChatMessage>;
   chatMessage: ChatMessage;
   userName: Observable<string>;
-
 
 
   constructor(
@@ -34,6 +32,7 @@ export class ChatService {
     const timestamp = this.getTimeStamp();
     const email = this.user.email;
     this.chatMessages = this.getMessages();
+    
     this.chatMessages.push({
       message: msg,
       timeSent: timestamp,
@@ -42,21 +41,20 @@ export class ChatService {
     });
   }
 
-  getMessages(): AngularFireList<ChatMessage[]> {
+  getMessages(): AngularFireList<ChatMessage> {
     return this.db.list('messages', ref => {
       return ref.limitToLast(25).orderByKey();
     });
   }
 
-  getTimeStamp() {
-      const now = new Date();
-      const date = now.getUTCFullYear() + '/' + 
-                   (now.getUTCMonth() + 1 ) + '/' +
-                   now.getUTCDate();
-      const time = now.getUTCHours() + ':' +
-                   now.getUTCMinutes() + ':' +
-                   now.getUTCSeconds();
-
-      return (date + ' ' + time);
-  }
-}
+  getTimeStamp(): Date{
+    const now = new Date();
+    const date = now.getUTCFullYear() + '/' +
+      (now.getUTCMonth() + 1) + '/' +
+      now.getUTCDate();
+    
+    const time = now.getUTCHours() + ':' +
+      now.getUTCMinutes() + ':' +
+      now.getUTCSeconds();
+    return now;
+  }}
