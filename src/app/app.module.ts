@@ -48,7 +48,7 @@ import { UserItemComponent } from './user-item/user-item.component';
         component: ChatFormComponent
       },
       {
-        path: "login",
+        path: "loginform",
         component: LoginFormComponent
       },
       {
