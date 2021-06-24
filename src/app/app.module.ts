@@ -1,35 +1,46 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
-import { RouterModule } from '@angular/router';
-import { UserListComponent } from './chat-form/user-list/user-list.component';
-import { ChatFormComponent } from './chat-form/chat-form.component';
-import { MessageComponent } from './message/message.component';
-import { LoginFormComponent } from './login-form/login-form.component';
-import { SignupFormComponent } from './signup-form/signup-form.component';
-import { FormsModule } from '@angular/forms';
-import { ChatService } from './services/chat.service';
-import { AuthService } from './services/auth.service';
-import { AngularFireModule } from '@angular/fire';
+import { RouterModule, Routes } from '@angular/router';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
-import { ChatroomComponent } from './chatroom/chatroom.component';
-import { FeedComponent } from './feed/feed.component';
-import { UserItemComponent } from './user-item/user-item.component';
-
+import { LoginComponent } from './components/login/login.component';
+import { RoomlistComponent } from './components/roomlist/roomlist.component';
+import { AddroomComponent } from './components/addroom/addroom.component';
+import { ChatroomComponent } from './components/chatroom/chatroom.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatCardModule } from '@angular/material/card';
+import { MatTableModule } from '@angular/material/table';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSortModule } from '@angular/material/sort';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { DatePipe } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import firebase from 'firebase/app';
+const routes: Routes = [
+  { path: 'login', component: LoginComponent },
+  { path: 'roomlist/:nickname', component: RoomlistComponent },
+  { path: 'addroom', component: AddroomComponent },
+  { path: 'chatroom/:nickname/:roomid', component: ChatroomComponent },
+  { path: '',
+    redirectTo: '/login',
+    pathMatch: 'full'
+  }
+];
+firebase.initializeApp(environment.firebase);
 @NgModule({
   declarations: [
     AppComponent,
-    UserListComponent,
-    ChatFormComponent,
-    MessageComponent,
-    LoginFormComponent,
-    SignupFormComponent,
-    ChatroomComponent,
-    FeedComponent,
-    UserItemComponent
+    LoginComponent,
+    RoomlistComponent,
+    AddroomComponent,
+    ChatroomComponent
   ],
   imports: [
     BrowserModule,
@@ -37,38 +48,20 @@ import { UserItemComponent } from './user-item/user-item.component';
     AngularFireAuthModule,
     AngularFireStorageModule,
     AngularFirestoreModule, 
-    AngularFireModule.initializeApp(environment.firebase),
-    RouterModule.forRoot(
-      
-      [ 
-        { path: '', redirectTo: '/loginform', pathMatch: 'full' },
-        
-        {
-        path: "chatform",
-        component: ChatFormComponent
-      },
-      {
-        path: "loginform",
-        component: LoginFormComponent
-      },
-      {
-       path: "signup",
-       component: SignupFormComponent
-      },
-    
-    {
-      path: "userlist",
-      component: UserListComponent
-    },
-  {
-    path: "message",
-    component: MessageComponent
-  },
-   { path: "chatroom",
-    component: ChatroomComponent }]
-    )
+    RouterModule.forRoot(routes),
+    ReactiveFormsModule,
+    MatInputModule,
+    MatIconModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatTableModule,
+    MatProgressSpinnerModule,
+    MatSortModule,
+    MatSnackBarModule,
+    MatSidenavModule,
+    BrowserAnimationsModule
   ],
-  providers: [AuthService, ChatService],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
