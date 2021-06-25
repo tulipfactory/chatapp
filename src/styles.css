@@ -2,3 +2,6 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-color: #4B0082; color: #fefefe;}
+.mat-form-field-empty.mat-form-field-label {
+    color: rgb(104, 104, 104);
+}

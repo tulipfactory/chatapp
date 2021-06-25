@@ -37,7 +37,7 @@ onFormSubmit(form: any) {
   } else {
     const newRoom = firebase.database().ref('rooms/').push();
     newRoom.set(room);
-    this.router.navigate(['/roomlist']);
+    this.router.navigate(['/roomlist', this.nickname]);
   } //this function submits the form.
   })
 }

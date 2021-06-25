@@ -24,7 +24,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     if (localStorage.getItem('nickname')) {
-      this.router.navigate(['/roomlist']);
+      let nickname = localStorage.getItem('nickname');
+      this.router.navigate(['/roomlist', nickname]);
     }
     this.loginForm = this.formBuilder.group({
       'nickname' : [null, Validators.required]
@@ -36,12 +37,12 @@ export class LoginComponent implements OnInit {
     this.ref.orderByChild('nickname').equalTo(login.nickname).once('value', snapshot => {
       if (snapshot.exists()) {
         localStorage.setItem('nickname', login.nickname);
-        this.router.navigate(['/roomlist']);
+        this.router.navigate(['/roomlist', login.nickname]);
       } else {
         const newUser = firebase.database().ref('users/').push();
         newUser.set(login);
         localStorage.setItem('nickname', login.nickname);
-        this.router.navigate(['/roomlist']);
+        this.router.navigate(['/roomlist', login.nickname]);
       }
     });
   }

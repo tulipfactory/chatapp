@@ -24,7 +24,7 @@ export const snapshotToArray = (snapshot: any) => {
 export class RoomlistComponent implements OnInit {
 
   nickname = '';
-  displayedColumns: string[] = ['roommate'];
+  displayedColumns: string[] = ['roomname'];
   rooms = [];
   isLoadingResults = true;
 
@@ -44,6 +44,7 @@ export class RoomlistComponent implements OnInit {
       let roomuser = [];
       roomuser = snapshotToArray(resp);
       const user = roomuser.find(x => x.nickname === this.nickname);
+      console.log(user)
       if (user !== undefined) {
         const userRef = firebase.database().ref('roomusers/' + user.key);
         userRef.update({status: 'online'});
@@ -58,7 +59,7 @@ export class RoomlistComponent implements OnInit {
     });
 // function to enter the chat room when the user chooses the room from the template 
 
-    this.router.navigate(['/chatroom', roomname]);
+    this.router.navigate(['/chatroom', this.nickname, roomname]);
   }
   logout(): void {
     localStorage.removeItem('nickname');

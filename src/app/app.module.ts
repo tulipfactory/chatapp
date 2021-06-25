@@ -23,16 +23,18 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { DatePipe } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import firebase from 'firebase/app';
+
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'roomlist/:nickname', component: RoomlistComponent },
   { path: 'addroom', component: AddroomComponent },
-  { path: 'chatroom/:nickname/:roomid', component: ChatroomComponent },
+  { path: 'chatroom/:nickname/:roomname', component: ChatroomComponent },
   { path: '',
     redirectTo: '/login',
     pathMatch: 'full'
   }
 ];
+
 firebase.initializeApp(environment.firebase);
 @NgModule({
   declarations: [

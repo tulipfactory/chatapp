@@ -53,8 +53,20 @@ matcher = new MyErrorStateMatcher();
       this.nickname = localStorage.getItem('nickname');
       this.roomname = this.route.snapshot.params.roomname;
       firebase.database().ref('chats/').on('value', resp => {
+        //format the dates of messages sent
         this.chats = [];
-        this.chats = snapshotToArray(resp);
+        let tempChats = snapshotToArray(resp)
+        tempChats.forEach(chat=>{
+          if(!Date.parse(chat.date)){
+            let tempDate = chat.date;
+            tempDate = tempDate.replace(" ", "T");
+            tempDate = tempDate.replace(/\//g, "-");
+            tempDate += "Z";
+            chat.date = this.datepipe.transform(Date.parse(tempDate), 'dd/MM/yyyy HH:mm:ss');
+          }
+        });
+        //set the chat messages in the room
+        this.chats = tempChats;
         setTimeout(() => this.scrolltop = this.chatcontent.nativeElement.scrollHeight, 500);
       });
       firebase.database().ref('roomusers/').orderByChild('roomname').equalTo(this.roomname).on('value', (resp2: any) => {
@@ -103,7 +115,7 @@ matcher = new MyErrorStateMatcher();
       }
     });//this function is used to exit the chat room. it will send the exit message to the 
     //firebase realtime database, set the room user status, and go back to the room lis
-this.router.navigate(['/roomlist']);
+    this.router.navigate(['/roomlist', this.nickname]);
 
   
   }
