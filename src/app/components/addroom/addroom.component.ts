@@ -11,7 +11,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
     const isSubmitted = form && form.submitted;
     return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
-  }
+  } //this makes the box red (shows error) if there is no value added to the input box
 }
 @Component({
   selector: 'app-addroom',
@@ -38,7 +38,7 @@ onFormSubmit(form: any) {
     const newRoom = firebase.database().ref('rooms/').push();
     newRoom.set(room);
     this.router.navigate(['/roomlist', this.nickname]);
-  } //this function submits the form.
+  } //this function submits the form to create a room
   })
 }
 

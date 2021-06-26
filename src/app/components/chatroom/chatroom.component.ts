@@ -63,7 +63,7 @@ matcher = new MyErrorStateMatcher();
             tempDate = tempDate.replace(/\//g, "-");
             tempDate += "Z";
             chat.date = this.datepipe.transform(Date.parse(tempDate), 'dd/MM/yyyy HH:mm:ss');
-          }
+          } //formats the date of when a message is sent
         });
         //set the chat messages in the room
         this.chats = tempChats;
@@ -72,7 +72,7 @@ matcher = new MyErrorStateMatcher();
       firebase.database().ref('roomusers/').orderByChild('roomname').equalTo(this.roomname).on('value', (resp2: any) => {
         const roomusers = snapshotToArray(resp2);
         this.users = roomusers.filter(x => x.status === 'online');
-      });
+      });//collect all of the users for this room 
     }
 
   ngOnInit(): void {

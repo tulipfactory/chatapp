@@ -18,13 +18,13 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   nickname = '';
-  ref = firebase.database().ref('users/');
+  ref = firebase.database().ref('users/'); //this allows you to access the users list in the firebase database
   matcher = new MyErrorStateMatcher();
   constructor(private router: Router, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
-    if (localStorage.getItem('nickname')) {
-      let nickname = localStorage.getItem('nickname');
+    if (localStorage.getItem('nickname')) { //checks if the browser has the nickname stored (if they have logged in previously)
+      let nickname = localStorage.getItem('nickname'); //takes you to the roomlist instead of the login (remembers you)
       this.router.navigate(['/roomlist', nickname]);
     }
     this.loginForm = this.formBuilder.group({
@@ -35,14 +35,16 @@ export class LoginComponent implements OnInit {
   onFormSubmit(form: any) {
     const login = form;
     this.ref.orderByChild('nickname').equalTo(login.nickname).once('value', snapshot => {
-      if (snapshot.exists()) {
+      //sorts user names alphabetically > checks if the name you typed is in the database userlist 
+      if (snapshot.exists()) { //if will only be true if your name is already inside the database
         localStorage.setItem('nickname', login.nickname);
         this.router.navigate(['/roomlist', login.nickname]);
       } else {
-        const newUser = firebase.database().ref('users/').push();
+        const newUser = firebase.database().ref('users/').push(); //else is true if it is a new user and they will be 
+        //added to the userlist database 
         newUser.set(login);
-        localStorage.setItem('nickname', login.nickname);
-        this.router.navigate(['/roomlist', login.nickname]);
+        localStorage.setItem('nickname', login.nickname); //adds your nickname to the browser storage
+        this.router.navigate(['/roomlist', login.nickname]); //takes you to your roomlist
       }
     });
   }

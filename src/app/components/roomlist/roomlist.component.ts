@@ -5,7 +5,7 @@ import 'firebase/database';
 import { DatePipe } from '@angular/common';
  //datepipe converts javascript date to the string
 
-export const snapshotToArray = (snapshot: any) => {
+export const snapshotToArray = (snapshot: any) => { //converts firebase data to array
   const returnArr = [];
 
   snapshot.forEach((childSnapshot: any) => {
@@ -43,12 +43,13 @@ export class RoomlistComponent implements OnInit {
     firebase.database().ref('roomusers/').orderByChild('roomname').equalTo(roomname).on('value', (resp: any) => {
       let roomuser = [];
       roomuser = snapshotToArray(resp);
-      const user = roomuser.find(x => x.nickname === this.nickname);
-      console.log(user)
-      if (user !== undefined) {
+      const user = roomuser.find(x => x.nickname === this.nickname); 
+      //43-46 is trying to find you (user) in the right room when you click
+     
+      if (user !== undefined) { //if   you were already added to the group chat set your status to online
         const userRef = firebase.database().ref('roomusers/' + user.key);
         userRef.update({status: 'online'});
-      } else {
+      } else { //if you were not previously in the group chat and had been invited this will just add you in
         const newroomuser = { roomname: '', nickname: '', status: '' };
         newroomuser.roomname = roomname;
         newroomuser.nickname = this.nickname;

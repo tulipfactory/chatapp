@@ -25,10 +25,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import firebase from 'firebase/app';
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent },
-  { path: 'roomlist/:nickname', component: RoomlistComponent },
+  { path: 'login', component: LoginComponent }, 
+  { path: 'roomlist/:nickname', component: RoomlistComponent }, 
+  //when you add /: to path it is called a path variable which is a variable inside the url
+  //it only will list the rooms u are in
   { path: 'addroom', component: AddroomComponent },
   { path: 'chatroom/:nickname/:roomname', component: ChatroomComponent },
+  //one specific room 
   { path: '',
     redirectTo: '/login',
     pathMatch: 'full'
