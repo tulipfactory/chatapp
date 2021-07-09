@@ -1,7 +1,9 @@
 <div class="container">
     <form class="example-form" [formGroup]="loginForm" (ngSubmit)="onFormSubmit(loginForm.value)">
         <h2>Please login using your nickname</h2>
+        <img id="profile-img" class="profile-img-card" src="https://i.ibb.co/6BDmY7C/robo3.jpg" />
         <mat-form-field class="example-full-width">
+          
           <mat-label>Nickname</mat-label>
           <input matInput placeholder="Enter your nickname" formControlName="nickname"
                   [errorStateMatcher]="matcher">
