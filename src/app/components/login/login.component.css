@@ -19,6 +19,7 @@
   
   .button-row {
     margin: 10px 0;
+    
   }
   
   .mat-flat-button {
@@ -32,4 +33,9 @@
     -moz-border-radius: 50%;
     -webkit-border-radius: 50%;
     border-radius: 50%;
+}
+h2 {
+  font-size: 23px;
+  color: black;
+  font-family: arial;
 }
