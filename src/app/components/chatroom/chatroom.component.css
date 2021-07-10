@@ -85,7 +85,7 @@
     content: '';
     position: absolute;
     right: 0;
-    top: 13px;
+    top: 13.5px;
     width: 0;
     height: 0;
     border: 27px solid transparent;
@@ -97,7 +97,7 @@
   }
   .chat-message .left-bubble {
     position: relative;
-    background: blueviolet;
+    background: #A0DEEC;
     border-top-right-radius: .4em;
     border-bottom-left-radius: .4em;
     border-bottom-right-radius: .4em;
@@ -107,7 +107,7 @@
   .chat-message .left-bubble span.msg-name {
     font-size: 12px;
     font-weight: bold;
-    color: blue;
+    color: #3C6A74;
   }
   .chat-message .left-bubble span.msg-date {
     font-size: 10px;
@@ -116,11 +116,11 @@
     content: '';
     position: absolute;
     left: 0;
-    top: 13px;
+    top: 13.5px;
     width: 0;
     height: 0;
     border: 27px solid transparent;
-    border-right-color: blueviolet;
+    border-right-color: #A0DEEC;
     border-left: 0;
     border-top: 0;
     margin-top: -13.5px;
@@ -156,4 +156,22 @@
   .chat-content {
     overflow-y: scroll;
     height: 600px;
+  }
+  .mat-drawer-container {
+    background-color: #E4E4E4;
+    color: black;
+  }
+  .mat-drawer {
+    background-color: #cdcdcd;
+   
+  }
+  .mat-card {
+    background-color: #7CB097;
+  }
+  .chat-content { 
+    height: 738px;
+  }
+  .mat-card-content {
+    height: 600px;
+    overflow: hidden; 
   }

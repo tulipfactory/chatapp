@@ -35,7 +35,7 @@ export class RoomlistComponent implements OnInit {
     chat.roomname = roomname;
     chat.nickname = this.nickname;
     chat.date = this.datepipe.transform(new Date(), 'dd/MM/yyyy HH:mm:ss');
-    chat.message = `${this.nickname} enter the room`;
+    chat.message = `${this.nickname} entered the room`;
     chat.type = 'join';
     const newMessage = firebase.database().ref('chats/').push();
     newMessage.set(chat);

@@ -48,3 +48,18 @@ table {
 .mat-column-created {
     max-width: 124px;
 }
+
+.mat-header-cell {
+    background: #7CB097;
+}
+.mat-cell {
+    background: #8EC8AC;
+}
+h3 {
+    font-size: 16px;
+    color: black;
+    letter-spacing: 1.5px;
+}
+h2 { 
+    font-size: 20px;
+    color: black;}

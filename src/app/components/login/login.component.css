@@ -24,18 +24,40 @@
   
   .mat-flat-button {
     margin: 5px;
-  }
-  .profile-img-card {
-    width: 96px;
-    height: 96px;
-    margin: 0 auto 10px;
-    display: block;
-    -moz-border-radius: 50%;
-    -webkit-border-radius: 50%;
-    border-radius: 50%;
+  
 }
 h2 {
   font-size: 23px;
   color: black;
   font-family: arial;
+}
+.mat-input-element {
+
+  
+    height: 20px;
+    color: black;
+    border: 0;
+  outline: 0;
+  background: transparent;
+  border-bottom: 1px solid black;
+    font-size: 16px;
+    font-family: 'Abel', sans-serif;
+  
+
+}
+
+button {
+  display: inline-block;
+    color: white;
+    width: 340px;
+    height: 50px;
+    padding: 0 20px;
+    background: #337e67;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    margin: 7% auto;
+    letter-spacing: 0.05em;
+    text-align: center;
+  
 }
