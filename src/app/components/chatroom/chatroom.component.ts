@@ -65,10 +65,14 @@ matcher = new MyErrorStateMatcher();
             chat.date = this.datepipe.transform(Date.parse(tempDate), 'dd/MM/yyyy HH:mm:ss');
           } //formats the date of when a message is sent
         });
-        //set the chat messages in the room
-        this.chats = tempChats;
+
+        this.chats = tempChats.filter(msg=>{
+         return msg.roomname === this.roomname
+          //when a message does not belong to a room, remove it
+        }) //=> function is shorthand
+       //only show the messages that belong to this room
         setTimeout(() => this.scrolltop = this.chatcontent.nativeElement.scrollHeight, 500);
-      });
+      });  //set the chat messages in the room
       firebase.database().ref('roomusers/').orderByChild('roomname').equalTo(this.roomname).on('value', (resp2: any) => {
         const roomusers = snapshotToArray(resp2);
         this.users = roomusers.filter(x => x.status === 'online');

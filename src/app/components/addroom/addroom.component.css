@@ -24,3 +24,24 @@
 .mat-flat-button {
     margin: 5px;
 }
+.mat-input-element {
+    height: 20px;
+    width: 300px;
+    color: black;
+    border: 0;
+  outline: 0;
+  background: transparent;
+  border-bottom: 1px solid black;
+    font-size: 16px;
+    font-family: 'Abel', sans-serif;
+}
+.mat-label {
+    color: black;
+    font-size: 12px;
+}
+h2 {
+    font-size: 25px;
+    color: black;
+    font-family: arial;
+    text-align: center;
+}
